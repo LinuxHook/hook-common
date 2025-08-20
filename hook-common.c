@@ -23,3 +23,18 @@ int64_t hook_common_read_fd_path(int32_t fd, char* path, int32_t pathLen)
 
     return retLen;
 }
+
+int64_t hook_common_read_proc_name(char *procName, int32_t procNameLen)
+{
+    if (!procName || procNameLen <= 0) {
+        return -1;
+    }
+
+    memset(procName, 0, procNameLen);
+
+    char procNameBuf[64] = {0};
+    snprintf(procNameBuf, sizeof(procNameBuf) - 1, "/proc/%d/exe", getpid());
+    const ssize_t retLen = readlink(procNameBuf, procName, sizeof(procName) - 1);
+
+    return retLen;
+}

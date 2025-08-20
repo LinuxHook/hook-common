@@ -12,7 +12,9 @@ extern "C"
 {
 #endif
 
-int64_t hook_common_read_fd_path (int32_t fd, char* path, int32_t pathLen);
+int64_t hook_common_read_fd_path    (int32_t fd, char* path, int32_t pathLen);
+
+int64_t hook_common_read_proc_name  (char* procName, int32_t procNameLen);
 
 #ifdef __cplusplus
 }
