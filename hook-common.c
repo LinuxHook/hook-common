@@ -34,7 +34,7 @@ int64_t hook_common_read_proc_name(char *procName, int32_t procNameLen)
 
     char procNameBuf[64] = {0};
     snprintf(procNameBuf, sizeof(procNameBuf) - 1, "/proc/%d/exe", getpid());
-    const ssize_t retLen = readlink(procNameBuf, procName, sizeof(procName) - 1);
+    const ssize_t retLen = readlink(procNameBuf, procName, procNameLen - 1);
 
     return retLen;
 }
